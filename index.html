@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fabrício Mixologia · Para Casa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#ECEEE8; --surface:#F8F9F5; --ink:#1C241F; --muted:#5E6A61; --line:#D3D8CF;
+  --amber:#A8661A; --amber-soft:#F3E3CC; --wine:#7E2B37; --wine-soft:#F2E0E2;
+  --display:"Gloock",Georgia,serif; --body:"Instrument Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#121613; --surface:#1A201C; --ink:#E6E9E1; --muted:#9AA79D; --line:#2C352F;
+  --amber:#E0A04A; --amber-soft:#3A2C18; --wine:#D97A86; --wine-soft:#3A1E23; color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:140px}
+.wrap{max-width:580px;margin:0 auto;display:flex;flex-direction:column;gap:30px;padding-top:24px}
+.draft{font-size:12.5px;color:var(--wine);border:1px dashed var(--wine);border-radius:6px;padding:8px 12px;margin:0}
+header{display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,11vw,56px);line-height:1;margin:0;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:46ch}
+.contacts{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:inherit;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn:focus-visible,.size:focus-visible,.step button:focus-visible,.jump a:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:0}
+.terms div{background:var(--surface);padding:10px 12px;min-width:0}
+.terms dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.terms dd{margin:2px 0 0;font-weight:500;font-size:14px}
+.terms .ok dd{color:var(--amber);font-weight:600}
+.jump{display:flex;flex-wrap:wrap;gap:8px}
+.jump a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--amber);padding:2px 0}
+h2{font-family:var(--display);font-weight:400;font-size:28px;margin:0}
+.section{display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.section-head{display:flex;flex-direction:column;gap:4px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.section-head .row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.section-head span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.section-head p{margin:0;font-size:13.5px;color:var(--muted)}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.item-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.item h3{font-family:var(--display);font-weight:400;font-size:21px;margin:0;line-height:1.15;min-width:0}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);white-space:nowrap}
+.ing{margin:0;color:var(--muted);font-size:14px}
+.warn{font-size:13px;background:var(--wine-soft);color:var(--wine);padding:6px 10px;border-radius:4px}
+.sizes{display:flex;flex-wrap:wrap;gap:8px}
+.size{font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;padding:7px 12px;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--ink);min-width:92px}
+.size .ml{font-family:var(--mono);font-size:12.5px;font-weight:500}
+.size .pr{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.size[aria-pressed="true"]{border-color:var(--amber);background:var(--amber-soft)}
+.row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+.yield{font-family:var(--mono);font-size:12.5px;background:var(--amber-soft);padding:4px 8px;border-radius:4px;font-variant-numeric:tabular-nums}
+.step{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.step button{font:inherit;font-size:18px;width:40px;height:36px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.step output{min-width:28px;text-align:center;font-weight:600;font-variant-numeric:tabular-nums}
+.drink{font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.drink em{font-style:normal;color:var(--ink);font-weight:500}
+.custom{border:1px solid var(--amber);background:var(--amber-soft);border-radius:4px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.custom p{margin:0}
+.custom ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.notes{font-size:13.5px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.notes strong{color:var(--ink)}
+.legal{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--wine);text-align:center;border-top:1px solid var(--line);padding-top:14px}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--bg);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));z-index:5}
+.bar-in{max-width:580px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.bar small{display:block;font-family:var(--mono);font-size:11px;opacity:.75}
+.bar strong{font-size:17px;font-variant-numeric:tabular-nums}
+.bar .btn{background:var(--amber);border-color:var(--amber);color:#1A120A}
+.bar .btn.ghost{background:transparent;color:var(--bg);border-color:currentColor}
+.bar-actions{display:flex;gap:8px}
+#copied{font-size:12px}
+@media (prefers-reduced-motion:no-preference){.size,.btn{transition:background .15s,border-color .15s}}
+</style></head>
+<body>
+<div class="wrap">
+
+  <p class="draft" id="draft" hidden>Rascunho: preços calculados por CMV com custos estimados. Confira a planilha antes de divulgar.</p>
+
+  <header>
+    <span class="eyebrow">Mixologia natural · para casa e para presente</span>
+    <h1>Fabrício<br>Morelli Dias</h1>
+    <p class="lede">Drinks prontos, licores e xaropes feitos à mão por um mixologista formado, com ingrediente de verdade, sem corante e sem aromatizante. Para o drink de casa, a reunião com a galera ou um presente diferente.</p>
+    <div class="contacts">
+      <a class="btn primary" id="wa-top" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      <button class="btn" id="copy-num" type="button">Copiar número</button>
+    </div>
+    <dl class="terms">
+      <div class="ok"><dt>Feito à mão</dt><dd>Produção em pequenos lotes</dd></div>
+      <div><dt>Pagamento</dt><dd>PIX, débito, crédito ou link</dd></div>
+      <div><dt>Entrega ou retirada</dt><dd>Combinada no WhatsApp</dd></div>
+      <div><dt>Prazo de produção</dt><dd>Drinks no dia · Xarope 3 dias · Licor 10</dd></div>
+    </dl>
+    <nav class="jump" aria-label="Categorias">
+      <a href="#drinks">Drinks no pote</a><a href="#licores">Licores</a><a href="#xaropes">Xaropes</a><a href="#encomenda">Sob encomenda</a>
+    </nav>
+  </header>
+
+  <div id="list" style="display:flex;flex-direction:column;gap:30px"></div>
+
+  <section class="section" id="encomenda">
+    <div class="section-head"><div class="row1"><h2>Sob encomenda</h2><span>sabor fora do cardápio</span></div>
+      <p>Para uma festa, um casamento ou um presente especial.</p></div>
+    <div class="custom">
+      <p>Quer um licor ou xarope que não está aqui? Eu desenvolvo a receita para você.</p>
+      <ul>
+        <li><b>Prazo:</b> o mesmo do cardápio (xarope 3 dias, licor 10)</li>
+        <li><b>Preço:</b> 30% sobre o valor do item equivalente do cardápio</li>
+        <li><b>Sinal:</b> 50% do valor para iniciar</li>
+        <li><b>Quantidade mínima:</b> 750 ml</li>
+      </ul>
+      <div><a class="btn primary" id="wa-custom" href="#" target="_blank" rel="noopener">Pedir sabor sob encomenda</a></div>
+    </div>
+  </section>
+
+  <div class="notes">
+    <strong>Como pedir</strong>
+    <span>Escolha o tamanho e a quantidade de cada item. "Enviar pedido" abre o WhatsApp com a lista pronta. Se o WhatsApp não abrir, use "Copiar pedido" e cole na conversa.</span>
+    <span>Licores e xaropes são produzidos sob pedido, com sinal de 20%. Drinks no pote são feitos no dia da entrega: peça com antecedência e combine o horário.</span>
+    <span>Rendimento calculado com dose de 30 ml para licores e 15 ml para xaropes. Cada pote de drink serve 4 copos com gelo.</span>
+  </div>
+
+  <p class="legal">Drinks e licores contêm álcool. Venda proibida para menores de 18 anos. Beba com moderação.</p>
+</div>
+
+<div class="bar" role="region" aria-label="Seu pedido">
+  <div class="bar-in">
+    <div><small id="count">Nenhum item</small><strong id="total">Monte seu pedido</strong></div>
+    <div class="bar-actions">
+      <button class="btn ghost" id="copy-order" type="button">Copiar pedido</button>
+      <a class="btn" id="send" href="#" target="_blank" rel="noopener">Enviar pedido</a>
+    </div>
+  </div>
+  <div class="bar-in"><span id="copied" aria-live="polite"></span></div>
+</div>
+
+<script>
+// ===== Configuração: troque aqui =====
+const WHATSAPP = "5511991986302"; // DDI + DDD + número, só dígitos
+const NOME = "Fabrício";
+const RASCUNHO = false; // mude para true para mostrar o aviso de rascunho
+// =====================================
+
+const L=[250,500], P=[600];
+const sections = [
+ {id:"drinks", name:"Drinks no pote", unit:"pote 600 ml · serve 4", note:"Pote de vidro bem fechado, com cerca de 480 ml de drink pronto e já diluído. Chega gelado: guarde na geladeira e sirva em copo com gelo.", items:[
+  {id:"dcaipi", name:"Caipirinha de Morango & Pimenta", tag:"Feito no dia", ing:"Cachaça prata, xarope de morango com pimenta-do-reino e limão espremido na hora.", warn:"Leva limão fresco: consumir em até 24 h, na geladeira.", label:"Validade", drink:"até 24 h na geladeira", sizes:P},
+  {id:"dcaipiro", name:"Caipiroska de Frutas Vermelhas", tag:"Feito no dia", ing:"Vodka, xarope de frutas vermelhas e limão espremido na hora.", warn:"Leva limão fresco: consumir em até 24 h, na geladeira.", label:"Validade", drink:"até 24 h na geladeira", sizes:P},
+  {id:"dgin", name:"Gin & Ervas", tag:"Feito no dia", ing:"Gin, xarope de hortelã, alecrim, tomilho e manjericão, e limão espremido na hora.", warn:"Leva limão fresco: consumir em até 24 h, na geladeira.", label:"Validade", drink:"até 24 h na geladeira", sizes:P},
+  {id:"dnegroni", name:"Negroni", tag:"Clássico", ing:"Gin, Campari e vermute rosso, já na diluição certa.", label:"Validade", drink:"até 15 dias na geladeira, fechado", sizes:P},
+  {id:"dof", name:"Old Fashioned de Banana", tag:"Autoral", ing:"Whisky, xarope de banana da casa e bitter de ervas.", label:"Validade", drink:"até 30 dias na geladeira, fechado", sizes:P},
+  {id:"dwr", name:"White Russian de Café", tag:"Cremoso", ing:"Vodka, licor de café da casa, creme de leite e leite.", warn:"Cremoso: consumir em até 2 dias, na geladeira.", label:"Validade", drink:"até 2 dias na geladeira", sizes:P},
+  {id:"dcha", name:"Chá Gelado de Pêssego & Cominho", tag:"Sem álcool", ing:"Chá preto gelado com xarope de pêssego e cominho tostado.", label:"Validade", drink:"até 3 dias na geladeira", sizes:P}
+ ]},
+ {id:"licores", name:"Licores", unit:"dose de 30 ml", note:"Validade de 6 meses, bem armazenado. Produção em até 10 dias.", items:[
+  {id:"choc", name:"Licor de Chocolate", tag:"Cremoso", ing:"Chocolate de verdade, cremoso e encorpado.", warn:"Cremoso: depois de aberto, dura de 15 a 30 dias na geladeira.", drink:"puro e bem gelado, sobre sorvete de creme ou no café", dose:30, sizes:L},
+  {id:"amend", name:"Licor de Amêndoas", tag:"Amendoado", ing:"Amêndoas, no estilo amaretto.", drink:"puro com gelo, Amaretto Sour ou no café", dose:30, sizes:L},
+  {id:"marula", name:"Licor Creme de Marula", tag:"Cremoso", ing:"Creme com fruto da marula.", warn:"Cremoso: depois de aberto, dura de 15 a 30 dias na geladeira.", drink:"puro com gelo, sobre sorvete ou batido com sorvete (Dom Pedro)", dose:30, sizes:L},
+  {id:"cafe", name:"Licor de Café", tag:"Torrado", ing:"Café coado e açúcar.", drink:"com leite gelado, Espresso Martini ou sobre sorvete de baunilha", dose:30, sizes:L},
+  {id:"silv", name:"Licor de Frutas Silvestres", tag:"Frutado", ing:"Mix de frutas silvestres.", drink:"com espumante, com água tônica e gelo ou sobre sorvete", dose:30, sizes:L},
+  {id:"lbanana", name:"Licor de Banana", tag:"Tropical", ing:"Banana madura.", drink:"com rum e limão, sobre sorvete ou em sobremesas", dose:30, sizes:L},
+  {id:"irish", name:"Licor Creme Irlandês", tag:"Cremoso", ing:"Creme com whisky, no estilo irish cream.", warn:"Cremoso: depois de aberto, dura de 15 a 30 dias na geladeira.", drink:"no café quente, puro com gelo ou em sobremesas", dose:30, sizes:L}
+ ]},
+ {id:"xaropes", name:"Xaropes", unit:"dose de 15 ml", note:"Para drinks com ou sem álcool. Validade de 3 meses em ambiente fresco ou geladeira. Produção em até 3 dias.", items:[
+  {id:"morpim", name:"Morango & Pimenta-do-reino", tag:"Picante", ing:"Morango e pimenta-do-reino moída na hora.", drink:"caipirinha, gin tônica ou água com gás e limão", dose:15, sizes:L},
+  {id:"mangapim", name:"Manga & Dedo-de-moça", tag:"Picância média", ing:"Manga madura e pimenta dedo-de-moça fresca.", drink:"caipirinha de manga, margarita ou água com gás", dose:15, sizes:L},
+  {id:"pescom", name:"Pêssego & Cominho", tag:"Autoral", ing:"Pêssego com toque de cominho tostado.", drink:"chá preto gelado, espumante ou whisky sour", dose:15, sizes:L},
+  {id:"banana", name:"Xarope de Banana", tag:"Tropical", ing:"Banana madura.", drink:"café gelado, panqueca ou Old Fashioned", dose:15, sizes:L},
+  {id:"fverm", name:"Frutas Vermelhas", tag:"Frutado", ing:"Mix de frutas vermelhas.", drink:"soda italiana, limonada ou caipiroska", dose:15, sizes:L},
+  {id:"morango", name:"Xarope de Morango", tag:"Frutado", ing:"Morango.", drink:"limonada rosa, milk-shake ou daiquiri", dose:15, sizes:L},
+  {id:"geng", name:"Xarope de Gengibre", tag:"Picante", ing:"Gengibre fresco.", drink:"Moscow Mule, água com gás e limão ou chá quente", dose:15, sizes:L},
+  {id:"ervas", name:"Ervas Variadas", tag:"Fresco", ing:"Hortelã, alecrim, tomilho, manjericão.", warn:"Depois de aberto, dura de 7 a 15 dias na geladeira.", drink:"mojito, limonada com hortelã ou gin tônica", dose:15, sizes:L},
+  {id:"melgeng", name:"Mel & Gengibre", tag:"Base", ing:"Mel e gengibre fresco.", drink:"chá quente, Hot Toddy ou limonada", dose:15, sizes:L}
+ ]}
+];
+
+// ===== Tabela de preços (ordem dos tamanhos) =====
+// Vêm da planilha de CMV. Licores e xaropes: [250 ml, 500 ml] · Drinks: [pote 600 ml]
+const PRICES = {
+  dcaipi:[50], dcaipiro:[56], dgin:[66], dnegroni:[87], dof:[85], dwr:[58], dcha:[33],
+  choc:[54,94], amend:[50,87], marula:[54,94], cafe:[43,72], silv:[47,79], lbanana:[41,69], irish:[62,110],
+  morpim:[34,54], mangapim:[32,50], pescom:[34,54], banana:[29,44], fverm:[39,64], morango:[32,50], geng:[29,44], ervas:[32,49], melgeng:[43,72]
+};
+sections.forEach(s=>s.items.forEach(it=>{ it.prices = PRICES[it.id] || it.sizes.map(()=>null); }));
+if(!RASCUNHO) document.getElementById("draft").hidden = true;
+
+const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const mlLabel = ml => ml===600 ? "Pote 600 ml" : ml>=1000 ? (ml/1000)+" L" : ml+" ml";
+const state = {};
+const list = document.getElementById("list");
+
+sections.forEach(sec=>{
+  const s=document.createElement("section"); s.className="section"; s.id=sec.id;
+  s.innerHTML=`<div class="section-head"><div class="row1"><h2>${sec.name}</h2><span>${sec.unit}</span></div>${sec.note?`<p>${sec.note}</p>`:""}</div>`;
+  sec.items.forEach(it=>{
+    state[it.id]={s:0,q:0};
+    const el=document.createElement("article"); el.className="item";
+    const sizes=it.sizes.map((ml,i)=>`<button type="button" class="size" data-i="${i}" aria-pressed="${i===0}">
+      <span class="ml">${mlLabel(ml)}</span><span class="pr">${it.prices[i]!=null?brl(it.prices[i]):"preço a definir"}</span></button>`).join("");
+    el.innerHTML=`
+      <div class="item-top"><h3>${it.name}</h3><span class="tag">${it.tag}</span></div>
+      <p class="ing">${it.ing}</p>
+      ${it.warn?`<div class="warn">${it.warn}</div>`:""}
+      <div class="sizes">${sizes}</div>
+      <div class="row"><span class="yield"></span>
+        <div class="step"><button type="button" aria-label="Remover um">−</button><output>0</output><button type="button" aria-label="Adicionar um">+</button></div></div>
+      <div class="drink">${it.label||"Em casa"}: <em>${it.drink}</em></div>`;
+    s.appendChild(el);
+    const y=el.querySelector(".yield");
+    const setYield=()=>{ if(sec.id==="drinks"){y.textContent="serve 4 copos com gelo";return;} const n=Math.floor(it.sizes[state[it.id].s]/it.dose); y.textContent=`rende ~${n} ${sec.id==="licores"?"doses":"drinks"}`; };
+    el.querySelectorAll(".size").forEach(b=>b.addEventListener("click",()=>{
+      state[it.id].s=+b.dataset.i;
+      el.querySelectorAll(".size").forEach(x=>x.setAttribute("aria-pressed",x===b));
+      setYield(); update();
+    }));
+    const [minus,plus]=el.querySelectorAll(".step button"), out=el.querySelector("output");
+    minus.addEventListener("click",()=>{state[it.id].q=Math.max(0,state[it.id].q-1);out.textContent=state[it.id].q;update();});
+    plus.addEventListener("click",()=>{state[it.id].q++;out.textContent=state[it.id].q;update();});
+    setYield();
+  });
+  list.appendChild(s);
+});
+
+function orderText(){
+  const lines=[]; let total=0, allPriced=true;
+  sections.forEach(sec=>sec.items.forEach(it=>{
+    const st=state[it.id]; if(!st.q) return;
+    const ml=it.sizes[st.s], p=it.prices[st.s];
+    if(p==null) allPriced=false; else total+=p*st.q;
+    lines.push(`• ${st.q}x ${it.name} ${mlLabel(ml)}${p!=null?` (${brl(p*st.q)})`:""}`);
+  }));
+  return {lines,total,allPriced};
+}
+const wa = t => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
+function update(){
+  const {lines,total,allPriced}=orderText();
+  const n=Object.values(state).reduce((a,b)=>a+b.q,0);
+  document.getElementById("count").textContent = n?`${n} ${n>1?"itens":"item"} no pedido`:"Nenhum item";
+  document.getElementById("total").textContent = !n?"Monte seu pedido":(allPriced?brl(total):"Valor a confirmar");
+  const msg = lines.length
+    ? `Olá, ${NOME}! Quero fazer um pedido:\n\n${lines.join("\n")}\n\n${allPriced?`Total: ${brl(total)}`:"Pode me passar o valor?"}\n\nQual o prazo?\n\nPara quando (data e horário):\nNome:\nEntrega ou retirada:\nEndereço (se for entrega):\nÉ para presente? (sim/não)`
+    : `Olá, ${NOME}! Vi seu cardápio e quero saber mais sobre os produtos.`;
+  const send=document.getElementById("send"); send.href=wa(msg); send.dataset.msg=msg;
+}
+document.getElementById("wa-top").href=wa(`Olá, ${NOME}! Vi seu cardápio e quero saber mais.`);
+document.getElementById("wa-custom").href=wa(`Olá, ${NOME}! Quero um sabor sob encomenda.\n\nTipo (licor ou xarope):\nSabor:\nTamanho e quantidade:\nPara quando preciso:\nÉ para alguma ocasião?`);
+
+const note=document.getElementById("copied");
+async function copy(text,ok){
+  try{await navigator.clipboard.writeText(text);note.textContent=ok;}
+  catch(e){note.textContent="Não deu para copiar. Número: +"+WHATSAPP;}
+  setTimeout(()=>note.textContent="",4000);
+}
+document.getElementById("copy-order").addEventListener("click",()=>{
+  if(!orderText().lines.length){note.textContent="Adicione ao menos um item.";return;}
+  copy(document.getElementById("send").dataset.msg,"Pedido copiado. Cole no WhatsApp.");
+});
+document.getElementById("copy-num").addEventListener("click",()=>copy("+"+WHATSAPP,"Número copiado."));
+update();
+</script>
+</body></html>
